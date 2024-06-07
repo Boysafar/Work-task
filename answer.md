@@ -7,13 +7,13 @@
 
   LEFT JOIN chap (birinchi) jadvaldagi barcha yozuvlarni va o'ng (ikkinchi) jadvaldagi mos keladigan yozuvlarni qaytaradi
   Agar mos yozuv topilmasa, o'ng jadvaldagi ustunlar uchun NULL qiymat qaytariladi.
-*       SELECT employees.name, departments.department_name
+*      SELECT employees.name, departments.department_name
        FROM employees
        LEFT JOIN departments ON employees.department_id = departments.id;
 
   RIGHT JOIN o'ng (ikkinchi) jadvaldagi barcha yozuvlarni va chap (birinchi) jadvaldagi mos keladigan yozuvlarni qaytaradi. 
   Agar mos yozuv topilmasa, chap jadvaldagi ustunlar uchun NULL qiymat qaytariladi. 
-*       SELECT employees.name, departments.department_name
+*      SELECT employees.name, departments.department_name
        FROM employees
        RIGHT JOIN departments ON employees.department_id = departments.id;
 
@@ -121,36 +121,36 @@
 **6-task**
   Analytical Questions:
 * Find the most borrowed book in the last 6 months.
-     SELECT B.title, COUNT(BR.record_id) AS borrow_count
-     FROM BorrowingRecords BR
-     JOIN Books B ON BR.book_id = B.book_id
-     WHERE BR.borrow_date >= CURRENT_DATE - INTERVAL '6 months'
-     GROUP BY B.title ORDER BY borrow_count DESC LIMIT 1;
+*     SELECT B.title, COUNT(BR.record_id) AS borrow_count
+      FROM BorrowingRecords BR
+      JOIN Books B ON BR.book_id = B.book_id
+      WHERE BR.borrow_date >= CURRENT_DATE - INTERVAL '6 months'
+      GROUP BY B.title ORDER BY borrow_count DESC LIMIT 1;
 * 
             title            | borrow_count
-     -----------------------------+--------------
-     Watch somebody at specific. |            6
-     (1 row)
+      -----------------------------+--------------
+      Watch somebody at specific. |            6
+      (1 row)
 
 
 * Find the average borrowing duration for books. 
-     SELECT M.name, COUNT(BR.record_id) AS borrow_count
-     FROM BorrowingRecords BR
-     JOIN Members M ON BR.member_id = M.member_id
-     GROUP BY M.name ORDER BY borrow_count DESC LIMIT 1;
+*     SELECT M.name, COUNT(BR.record_id) AS borrow_count
+      FROM BorrowingRecords BR
+      JOIN Members M ON BR.member_id = M.member_id
+      GROUP BY M.name ORDER BY borrow_count DESC LIMIT 1;
 * 
-        name     | borrow_count
-     -------------+--------------
-     Laura Davis |           27
-     (1 row)
+      name     | borrow_count
+      -------------+--------------
+      Laura Davis |           27
+      (1 row)
 
 
-* Find the average borrowing duration for books
-     SELECT AVG(return_date - borrow_date) AS average_borrowing_duration
-     FROM BorrowingRecords
-     WHERE return_date IS NOT NULL;
-* 
-      average_borrowing_duration
-     ----------------------------
-     370.7094430992736077
-    (1 row)
+Find the average borrowing duration for books
+*     SELECT AVG(return_date - borrow_date) AS average_borrowing_duration
+      FROM BorrowingRecords
+      WHERE return_date IS NOT NULL;
+
+*     average_borrowing_duration
+      ----------------------------
+      370.7094430992736077
+      (1 row)
